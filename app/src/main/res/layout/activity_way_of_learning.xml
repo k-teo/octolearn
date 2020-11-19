@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/testKnowledge" />
 
     <Button
-        android:id="@+id/words"
+        android:id="@+id/wordsListView"
         android:layout_width="0dp"
         android:layout_height="68dp"
         android:layout_marginStart="16dp"

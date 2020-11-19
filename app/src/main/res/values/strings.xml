@@ -10,4 +10,24 @@
     <string name="menu_home">Flashcards</string>
     <string name="menu_gallery">Profile</string>
     <string name="menu_slideshow">Statistics</string>
+
+    <string-array name="foreign_words">
+        <item>a dog</item>
+        <item>a crocodile</item>
+        <item>a parrot</item>
+        <item>a cat</item>
+        <item>a hippopotamus</item>
+        <item>a sheep</item>
+        <item>a rabbit</item>
+    </string-array>
+
+    <string-array name="native_words">
+        <item>pies</item>
+        <item>krokodyl</item>
+        <item>papuga</item>
+        <item>kot</item>
+        <item>hipopotam</item>
+        <item>owca</item>
+        <item>krolik</item>
+    </string-array>
 </resources>
