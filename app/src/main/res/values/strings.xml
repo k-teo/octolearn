@@ -10,6 +10,11 @@
     <string name="menu_home">Flashcards</string>
     <string name="menu_gallery">Profile</string>
     <string name="menu_slideshow">Statistics</string>
+    <string name="transcription">Transcription</string>
+    <string name="add">Add</string>
+    <string name="sample">Sample</string>
+    <string name="in_polish">In Polish</string>
+    <string name="in_english">In English</string>
 
     <string-array name="foreign_words">
         <item>a dog</item>

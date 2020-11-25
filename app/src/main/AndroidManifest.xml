@@ -9,9 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListOfWordsActivity"></activity>
-        <activity android:name=".WayOfLearningActivity" />
-        <activity android:name=".CreateCatalogActivity" />
+        <activity
+            android:name=".CreateFlashcardActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ListOfWordsActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".WayOfLearningActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".CreateCatalogActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
