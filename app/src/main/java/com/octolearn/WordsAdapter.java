@@ -6,16 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class WordsAdapter extends BaseAdapter {
 
     LayoutInflater mInflater;
-    String[] foreign_words;
-    String[] native_words;
+    ArrayList<String> foreign_words;
+    ArrayList<String> native_words;
 
-    public WordsAdapter(Context context, String[] foreign_words, String[] native_words){
+    public WordsAdapter(Context context, ArrayList<String> foreign_words, ArrayList<String> native_words){
         this.foreign_words = foreign_words;
         this.native_words = native_words;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -23,12 +22,12 @@ public class WordsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return foreign_words.length;
+        return foreign_words.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return foreign_words[position];
+        return foreign_words.get(position);
     }
 
     @Override
@@ -42,8 +41,8 @@ public class WordsAdapter extends BaseAdapter {
         TextView wordTextView = (TextView) v.findViewById(R.id.wordTextView);
         TextView translationTextView = (TextView) v.findViewById(R.id.translationTextView);
 
-        String word = foreign_words[position];
-        String translation = native_words[position];
+        String word = foreign_words.get(position);
+        String translation = native_words.get(position);
 
         wordTextView.setText(word);
         translationTextView.setText(translation);

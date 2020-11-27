@@ -21,11 +21,15 @@
 
     <Button
         android:id="@+id/add"
-        android:layout_width="381dp"
+        android:layout_width="386dp"
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
-        android:text="Add"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:text="Add new flashcard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordsListView"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
