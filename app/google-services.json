@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967292875950",
+    "firebase_url": "https://octolearn-c5997.firebaseio.com",
+    "project_id": "octolearn-c5997",
+    "storage_bucket": "octolearn-c5997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967292875950:android:52df33056a1f6e1fc9a93f",
+        "android_client_info": {
+          "package_name": "com.octolearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967292875950-uet0bctsl8r2htf80nqjph3odaub9sjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7R0PcohSTmhtONbDXvmnhpGy0Vj91nwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967292875950-uet0bctsl8r2htf80nqjph3odaub9sjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
