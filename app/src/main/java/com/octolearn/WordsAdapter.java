@@ -11,23 +11,21 @@ import java.util.ArrayList;
 public class WordsAdapter extends BaseAdapter {
 
     LayoutInflater mInflater;
-    ArrayList<String> foreign_words;
-    ArrayList<String> native_words;
+    ArrayList<Flashcard> flashcards;
 
-    public WordsAdapter(Context context, ArrayList<String> foreign_words, ArrayList<String> native_words){
-        this.foreign_words = foreign_words;
-        this.native_words = native_words;
+    public WordsAdapter(Context context, ArrayList<Flashcard> flashcards){
+        this.flashcards = flashcards;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return foreign_words.size();
+        return flashcards.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return foreign_words.get(position);
+        return flashcards.get(position);
     }
 
     @Override
@@ -37,16 +35,16 @@ public class WordsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = mInflater.inflate(R.layout.words_listview_detail, null);
-        TextView wordTextView = (TextView) v.findViewById(R.id.wordTextView);
-        TextView translationTextView = (TextView) v.findViewById(R.id.translationTextView);
+        View view = mInflater.inflate(R.layout.words_listview_detail, null);
+        TextView wordTextView = (TextView) view.findViewById(R.id.wordTextView);
+        TextView translationTextView = (TextView) view.findViewById(R.id.translationTextView);
 
-        String word = foreign_words.get(position);
-        String translation = native_words.get(position);
+        String word = flashcards.get(position).getWord();
+        String translation = flashcards.get(position).getTranslation();
 
         wordTextView.setText(word);
         translationTextView.setText(translation);
 
-        return v;
+        return view;
     }
 }

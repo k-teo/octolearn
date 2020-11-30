@@ -3,6 +3,7 @@ package com.octolearn;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,35 +13,21 @@ import java.util.ArrayList;
 
 public class ListOfWordsActivity extends AppCompatActivity {
 
-    public static ListView wordsListView;
-    public static ArrayList<String> foreign_words;
-    public static ArrayList<String> native_words;
+    private ListView wordsListView;
+    private ArrayList<Flashcard> flashcards;
+    private WordsAdapter wordsAdapter;
+    private WordsSQLiteDB dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_words);
 
-        //Resources res = getResources();
+        dataBase = new WordsSQLiteDB(this);
         wordsListView = (ListView) findViewById(R.id.wordsListView);
-        //foreign_words = res.getStringArray(R.array.foreign_words);
-        //native_words = res.getStringArray(R.array.native_words);
+        flashcards = new ArrayList<>();
 
-        foreign_words = new ArrayList<>();
-        foreign_words.add("a dog");
-        foreign_words.add("a crocodile");
-        foreign_words.add("a parrot");
-        foreign_words.add("a cat");
-
-        native_words = new ArrayList<>();
-        native_words.add("pies");
-        native_words.add("krokodyl");
-        native_words.add("papuga");
-        native_words.add("kot");
-
-        WordsAdapter wordsAdapter = new WordsAdapter(this, foreign_words, native_words);
-        wordsListView.setAdapter(wordsAdapter);
-        wordsListView.setAdapter(wordsAdapter);
+        loadFlashcardsFromDatabase();
 
         Button button = (Button) findViewById(R.id.add);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +36,26 @@ public class ListOfWordsActivity extends AppCompatActivity {
                 startActivity(new Intent(ListOfWordsActivity.this, CreateFlashcardActivity.class));
             }
         });
+    }
+
+    private void loadFlashcardsFromDatabase() {
+        Cursor cursor = dataBase.getAllEmployees();
+
+        if (cursor.moveToFirst()) {
+            do {
+                flashcards.add(new Flashcard(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4)
+                ));
+            } while (cursor.moveToNext());
+
+            wordsAdapter = new WordsAdapter(this, flashcards);
+            wordsAdapter.notifyDataSetChanged();
+            wordsListView.setAdapter(wordsAdapter);
+        }
     }
 
 }
