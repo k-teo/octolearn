@@ -1,0 +1,111 @@
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".LoginActivity\">\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextTextEmailAddress\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"370dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textEmailAddress\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextTextPassword\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPassword\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.502\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextEmailAddress\"\r\n        app:layout_constraintVertical_bias=\"0.0\" />\r\n\r\n    <CheckBox\r\n        android:id=\"@+id/checkBox\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:text=\"Remember me\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextPassword\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"30dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:text=\"Forgot Password\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextPassword\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"120dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:text=\"Sign In\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextPassword\"\r\n        android:background=\"@color/colorPrimary\"\r\n        android:textColor=\"@android:color/white\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"128dp\"\r\n        android:text=\"Welcome to Octolearn!\"\r\n        android:textSize=\"@dimen/font_size_large\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.495\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"108dp\"\r\n        android:layout_marginLeft=\"108dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Don't have an account?\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"104dp\"\r\n        android:layout_marginRight=\"104dp\"\r\n        android:text=\"Sign Up\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        android:textStyle=\"bold|italic\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView5\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision 3fe6cb85f3ff748f1daaf3282c07f8a5113fdb40)
++++ app/src/main/res/layout/activity_login.xml	(date 1606486485411)
+@@ -9,15 +9,16 @@
+     <EditText
+         android:id="@+id/editTextTextEmailAddress"
+         android:layout_width="0dp"
+-        android:layout_height="0dp"
++        android:layout_height="wrap_content"
+         android:layout_marginStart="60dp"
+         android:layout_marginLeft="60dp"
+-        android:layout_marginTop="370dp"
++        android:layout_marginTop="340dp"
+         android:layout_marginEnd="60dp"
+         android:layout_marginRight="60dp"
+         android:ems="10"
+         android:inputType="textEmailAddress"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".RegisterActivity\">\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextTextEmailAddress\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"170dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textEmailAddress\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView5\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextTextPassword\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPassword\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.502\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextEmailAddress\"\r\n        app:layout_constraintVertical_bias=\"0.0\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"120dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:text=\"Sign Up\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextPassword\"\r\n        android:background=\"@color/colorPrimary\"\r\n        android:textColor=\"@android:color/white\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"128dp\"\r\n        android:text=\"Welcome to Octolearn!\"\r\n        android:textSize=\"@dimen/font_size_large\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.495\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"104dp\"\r\n        android:layout_marginLeft=\"104dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Already have an account?\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"98dp\"\r\n        android:layout_marginRight=\"98dp\"\r\n        android:text=\"Sign In\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        android:textStyle=\"bold|italic\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView5\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextTextPassword2\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"60dp\"\r\n        android:layout_marginLeft=\"60dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"60dp\"\r\n        android:layout_marginRight=\"60dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPassword\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextTextPassword\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(revision 3fe6cb85f3ff748f1daaf3282c07f8a5113fdb40)
++++ app/src/main/res/layout/activity_register.xml	(date 1606483116446)
+@@ -9,17 +9,20 @@
+     <EditText
+         android:id="@+id/editTextTextEmailAddress"
+         android:layout_width="0dp"
+-        android:layout_height="0dp"
++        android:layout_height="wrap_content"
+         android:layout_marginStart="60dp"
+         android:layout_marginLeft="60dp"
+-        android:layout_marginTop="170dp"
++        android:layout_marginTop="16dp"
+         android:layout_marginEnd="60dp"
+         android:layout_marginRight="60dp"
++        android:layout_marginBottom="336dp"
+         android:ems="10"
+         android:inputType="textEmailAddress"
++        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
++        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+ 
+     <EditText
+         android:id="@+id/editTextTextPassword"
+@@ -30,14 +33,15 @@
+         android:layout_marginTop="16dp"
+         android:layout_marginEnd="60dp"
+         android:layout_marginRight="60dp"
++        android:layout_marginBottom="268dp"
+         android:ems="10"
+         android:inputType="textPassword"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.502"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+-        app:layout_constraintVertical_bias="0.0" />
++        app:layout_constraintTop_toTopOf="@+id/editTextTextEmailAddress"
++        app:layout_constraintVertical_bias="1.0" />
+ 
+     <Button
+         android:id="@+id/button"
+@@ -104,10 +108,29 @@
+         android:layout_marginTop="16dp"
+         android:layout_marginEnd="60dp"
+         android:layout_marginRight="60dp"
++        android:layout_marginBottom="190dp"
+         android:ems="10"
+         android:inputType="textPassword"
++        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+ 
++    <EditText
++        android:id="@+id/editTextTextPersonName"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="60dp"
++        android:layout_marginLeft="60dp"
++        android:layout_marginEnd="60dp"
++        android:layout_marginRight="60dp"
++        android:layout_marginBottom="400dp"
++        android:ems="10"
++        android:inputType="textPersonName"
++        android:text="Nickname"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintStart_toStartOf="parent" />
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
