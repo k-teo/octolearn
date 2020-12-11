@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private Button newButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toggle.syncState();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
+        Button catalog = findViewById(R.id.button1);
+        catalog.setOnClickListener(this);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -88,8 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.button1:
+                startActivity(new Intent(MainActivity.this, WayOfLearningActivity.class));
+                break;
             case R.id.fab:
-                startActivity(new Intent(MainActivity.this, CreateCatalogActivity.class));
+                addButton();
                 break;
         }
     }
@@ -105,5 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
+    }
+
+    public void addButton(){
+        LinearLayout layout = (LinearLayout) findViewById(R.id.buttons_layout);
+        newButton = new Button(this);
+        newButton.setText("new button");
+        layout.addView(newButton);
     }
 }

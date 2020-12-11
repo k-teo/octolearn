@@ -51,31 +51,37 @@ public class WordsSQLiteDB extends SQLiteOpenHelper {
         return sqLiteDatabase.insert(FLASHCARDS_TABLE_NAME, null, contentValues) != -1;
     }
 
-    Cursor getAllEmployees() {
+    Cursor getAllFlashcards() {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         return sqLiteDatabase.rawQuery("SELECT * FROM " + FLASHCARDS_TABLE_NAME, null);
     }
 
-    boolean updateEmployee(String word, String translation, String sample, String transcription,
+    boolean updateFlashcard(String word, String translation, String newWord, String newTranslation, String newSample, String newTranscription,
                            String catalogName) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FLASHCARDS_COLUMN_WORD, word);
-        contentValues.put(FLASHCARDS_COLUMN_TRANSLATION, translation);
-        contentValues.put(FLASHCARDS_COLUMN_SAMPLE, sample);
-        contentValues.put(FLASHCARDS_COLUMN_TRANSCRIPTION, transcription);
+        contentValues.put(FLASHCARDS_COLUMN_WORD, newWord);
+        contentValues.put(FLASHCARDS_COLUMN_TRANSLATION, newTranslation);
+        contentValues.put(FLASHCARDS_COLUMN_SAMPLE, newSample);
+        contentValues.put(FLASHCARDS_COLUMN_TRANSCRIPTION, newTranscription);
         contentValues.put(FLASHCARDS_COLUMN_CATALOG_NAME, catalogName);
 
         return sqLiteDatabase.update(FLASHCARDS_TABLE_NAME, contentValues,
-                "FLASHCARDS_COLUMN_WORD = ? and FLASHCARDS_COLUMN_TRANSLATION = ?",
-                new String[] { word, translation }) == 1;
+                FLASHCARDS_COLUMN_WORD + "=?",
+                new String[] { word }) == 1;
+
     }
 
-    boolean deleteEmployee(String word, String translation) {
+    boolean deleteFlashcard(String word, String translation) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.delete(FLASHCARDS_TABLE_NAME,
-                "FLASHCARDS_COLUMN_WORD = ? and FLASHCARDS_COLUMN_TRANSLATION = ?",
-                new String[] { word, translation }) == 1;
+                FLASHCARDS_COLUMN_WORD + "=?" ,
+                new String[] { word }) == 1;
+    }
+    void deleteAllFlashcards() {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FLASHCARDS_TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
 }

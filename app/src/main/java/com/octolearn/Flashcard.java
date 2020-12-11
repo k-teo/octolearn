@@ -1,6 +1,8 @@
 package com.octolearn;
 
-public class Flashcard {
+import java.io.Serializable;
+
+public class Flashcard implements Serializable {
     private String word;
     private String translation;
     private String sample;
