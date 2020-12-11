@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.octolearn">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoFlashcardsLeftActivity"></activity>
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".NoFlashcardsLeftActivity" />
         <activity android:name=".DisplayFlashcardActivity" />
         <activity android:name=".EditFlashcardActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,13 +28,14 @@
         <activity
             android:name=".CreateFlashcardActivity"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ListOfWordsActivity"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".WayOfLearningActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CreateCatalogActivity"
             android:parentActivityName=".MainActivity" />
