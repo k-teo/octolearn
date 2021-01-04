@@ -14,9 +14,19 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
 
     private ArrayList<Flashcard> flashcards;
     private Flashcard currentFlashcard;
-    private TextView word;
+
     private boolean isTranslation;
 
+    private TextView word;
+    private TextView sample;
+
+    private TextView redNum;
+    private TextView yellowNum;
+    private TextView greenNum;
+
+    private int redCounter;
+    private int yellowCounter;
+    private int greenCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +40,15 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
         }
 
         word = (TextView) findViewById(R.id.word);
+        sample = (TextView) findViewById(R.id.sentence);
+
+        redNum = (TextView) findViewById(R.id.red_num);
+        yellowNum = (TextView) findViewById(R.id.yellow_num);
+        greenNum = (TextView) findViewById(R.id.green_num);
+
+        redCounter = 0;
+        yellowCounter = flashcards.size();
+        greenCounter = 0;
 
         nextFlashcard();
         isTranslation = false;
@@ -59,10 +78,18 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
                     startActivity(new Intent(DisplayFlashcardActivity.this, NoFlashcardsLeftActivity.class));
                 }
                 else{
-                   nextFlashcard();
+                    if(yellowCounter>0) { yellowCounter--; }
+                    else{ redCounter--; }
+                    greenCounter++;
+                    nextFlashcard();
                 }
                 break;
             case R.id.incorrect:
+                if(yellowCounter>0){
+                    redCounter++;
+                    yellowCounter--;
+                }
+
                 flashcards.add(currentFlashcard);
                 nextFlashcard();
                 break;
@@ -72,6 +99,12 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
     public void nextFlashcard(){
         currentFlashcard = flashcards.get(0);
         flashcards.remove(0);
+
         word.setText(currentFlashcard.getWord());
+        sample.setText(currentFlashcard.getTranslation());
+
+        redNum.setText(String.valueOf(redCounter));
+        yellowNum.setText(String.valueOf(yellowCounter));
+        greenNum.setText(String.valueOf(greenCounter));
     }
 }

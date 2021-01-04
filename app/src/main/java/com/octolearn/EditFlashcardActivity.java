@@ -59,7 +59,7 @@ public class EditFlashcardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (dataBase.deleteFlashcard(word, translation))
                 {
-                    Toast.makeText(EditFlashcardActivity.this, word + translation, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditFlashcardActivity.this, "Flashcard deleted", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditFlashcardActivity.this, ListOfWordsActivity.class));
                 }
             }

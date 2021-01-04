@@ -34,31 +34,40 @@ public class WayOfLearningActivity extends AppCompatActivity implements View.OnC
         dataBase = new WordsSQLiteDB(this);
         flashcards = new ArrayList<>();
 
-        getFlashcards();
+
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent;
+        Bundle b = new Bundle();
         switch (v.getId()) {
             case R.id.flashcards:
+                getFlashcards();
                 if(flashcards.isEmpty()){
                     startActivity(new Intent(WayOfLearningActivity.this, NoFlashcardsLeftActivity.class));
                     break;
                 }
-                Intent intent = new Intent(WayOfLearningActivity.this, DisplayFlashcardActivity.class);
-                Bundle b = new Bundle();
+                intent = new Intent(WayOfLearningActivity.this, DisplayFlashcardActivity.class);
                 b.putSerializable("flashcards", flashcards);
                 intent.putExtras(b);
                 startActivity(intent);
                 break;
             case R.id.testKnowledge:
-                Toast.makeText(WayOfLearningActivity.this, flashcards.get(0).getWord(), Toast.LENGTH_SHORT).show();
+                getFlashcards();
+                if(flashcards.isEmpty()){
+                    startActivity(new Intent(WayOfLearningActivity.this, NoFlashcardsLeftActivity.class));
+                    break;
+                }
+                intent = new Intent(WayOfLearningActivity.this, TestKnowledgeActivity.class);
+                b.putSerializable("flashcards", flashcards);
+                intent.putExtras(b);
+                startActivity(intent);
                 break;
             case R.id.miniGames:
                 Toast.makeText(WayOfLearningActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wordsListView:
-                Toast.makeText(WayOfLearningActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(WayOfLearningActivity.this, ListOfWordsActivity.class));
                 break;
         }
