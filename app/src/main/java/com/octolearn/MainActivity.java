@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DrawerLayout drawer;
     private Button newButton;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         catalog.setOnClickListener(this);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View inflatedView = getLayoutInflater().inflate(R.layout.nav_header_main, null);
+        TextView navView = (TextView) inflatedView.findViewById(R.id.userEmail);
+        //navView.setText(getEmail());
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -59,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onBackPressed();
     }
 
+    public String getEmail() {
+        return fAuth.getCurrentUser().getEmail();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void logout(){
         FirebaseAuth.getInstance().signOut();
+        LoginActivity.logout();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
     }

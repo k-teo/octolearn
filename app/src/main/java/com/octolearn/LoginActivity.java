@@ -26,7 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView signUp;
     Button mLoginBtn;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    static SharedPreferences preferences;
 
+    public static void logout(){
+        preferences.edit().putBoolean("logged", false).apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +42,30 @@ public class LoginActivity extends AppCompatActivity {
         mLoginBtn = (Button) findViewById(R.id.registerButton);
         signUp = (TextView) findViewById(R.id.loginButton);
         remember = (CheckBox) findViewById(R.id.Remember_checkBox);
-        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        String checkbox = preferences.getString("remember", "");
-        if(checkbox.equals("true")){
+        preferences = getSharedPreferences("login", MODE_PRIVATE);
+
+        if(preferences.getBoolean("logged", false)){
             Intent intent = new Intent (LoginActivity.this, MainActivity.class);
             startActivity(intent);
-        } else if(checkbox.equals("false")){
+        } else {
             Toast.makeText(this, "Please sign in", Toast.LENGTH_SHORT).show();
         }
+
+        remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("checkbox", true).apply();
+                    Toast.makeText(LoginActivity.this, "Checked", Toast.LENGTH_SHORT).show();
+
+                }else if (!buttonView.isChecked()){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("checkbox", false).apply();
+                    Toast.makeText(LoginActivity.this, "Unchecked", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,24 +73,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
-                remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(buttonView.isChecked()){
-                            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("remember", "true");
-                            editor.apply();
-                            Toast.makeText(LoginActivity.this, "Checked", Toast.LENGTH_SHORT).show();
-                        }else if (!buttonView.isChecked()){
-                            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("remember", "false");
-                            editor.apply();
-                            Toast.makeText(LoginActivity.this, "Unchecked", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is required");
@@ -85,10 +87,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            if(preferences.getBoolean("checkbox", false)){
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putBoolean("logged", true).apply();
+                            }
                             Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }
                         else{
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean("logged", false).apply();
                             Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
