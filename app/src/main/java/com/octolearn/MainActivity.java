@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(), CreateCatalogActivity.class));
                 break;
             case R.id.nav_statistics:
-                startActivity(new Intent(getApplicationContext(), CreateCatalogActivity.class));
+                startActivity(new Intent(getApplicationContext(), Statistics.class));
                 break;
             case R.id.nav_friends:
                 startActivity(new Intent(getApplicationContext(), CreateCatalogActivity.class));
