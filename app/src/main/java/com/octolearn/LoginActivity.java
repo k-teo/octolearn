@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox remember;
     TextView signUp;
     Button mLoginBtn;
+    TextView forgotPassword;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     static SharedPreferences preferences;
 
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmail  = findViewById(R.id.email);
         mPassword   = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.textView3);
         mLoginBtn = (Button) findViewById(R.id.registerButton);
         signUp = (TextView) findViewById(R.id.loginButton);
         remember = (CheckBox) findViewById(R.id.Remember_checkBox);
@@ -64,6 +67,31 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putBoolean("checkbox", false).apply();
                     Toast.makeText(LoginActivity.this, "Unchecked", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email = mEmail.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                fAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
@@ -110,5 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
     }
 }
