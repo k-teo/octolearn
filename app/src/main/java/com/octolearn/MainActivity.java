@@ -49,9 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        View inflatedView = getLayoutInflater().inflate(R.layout.nav_header_main, null);
-        TextView navView = (TextView) inflatedView.findViewById(R.id.userEmail);
-        //navView.setText(getEmail());
+        View headerLayout = navigationView.getHeaderView(0);
+        TextView whatEmail = headerLayout.findViewById(R.id.userEmail);
+        whatEmail.setText(getEmail());
+
 
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(), Statistics.class));
                 break;
             case R.id.nav_friends:
-                startActivity(new Intent(getApplicationContext(), CreateCatalogActivity.class));
+                Toast.makeText(MainActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_settings:
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
@@ -92,13 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(), Profile.class));
                 break;
             case R.id.nav_logout:
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
                 logout();
                 break;
-
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
