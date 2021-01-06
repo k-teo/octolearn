@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Statistics"></activity>
+        <activity android:name=".EndOfTestActivity"></activity>
         <activity android:name=".TestKnowledgeActivity" />
         <activity android:name=".NoFlashcardsLeftActivity" />
         <activity android:name=".DisplayFlashcardActivity" />

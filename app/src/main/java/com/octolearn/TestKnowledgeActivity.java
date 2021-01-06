@@ -20,6 +20,9 @@ public class TestKnowledgeActivity extends AppCompatActivity {
     private TextView answer;
     private TextView wrongAnswer;
 
+    private int allFlashcards;
+    private int wrongAnswers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,9 @@ public class TestKnowledgeActivity extends AppCompatActivity {
         {
             flashcards = (ArrayList<Flashcard>) b.getSerializable("flashcards");
         }
+
+        allFlashcards = flashcards.size();
+        wrongAnswers = 0;
 
         word = findViewById(R.id.word_test);
         answer = findViewById(R.id.answer);
@@ -44,9 +50,16 @@ public class TestKnowledgeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(flashcards.isEmpty()){
-                    startActivity(new Intent(TestKnowledgeActivity.this, NoFlashcardsLeftActivity.class));
+                    Intent intent = new Intent(TestKnowledgeActivity.this, EndOfTestActivity.class);
+                    Bundle b = new Bundle();
+                    b.putInt("all", allFlashcards);
+                    b.putInt("good", allFlashcards - wrongAnswers);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    finish();
                 }
                 else if(!currentFlashcard.getTranslation().equals(answer.getText().toString())){
+                    wrongAnswers++;
                     wrongAnswer.setText(currentFlashcard.getTranslation());
                     handler.postDelayed(new Runnable() {
                         @Override

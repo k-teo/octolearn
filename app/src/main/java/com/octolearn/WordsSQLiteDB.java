@@ -57,7 +57,7 @@ public class WordsSQLiteDB extends SQLiteOpenHelper {
     }
 
     boolean updateFlashcard(String word, String translation, String newWord, String newTranslation, String newSample, String newTranscription,
-                           String catalogName) {
+                            String catalogName) {
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
