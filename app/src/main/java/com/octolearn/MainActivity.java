@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button newButton;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     LinearLayout layoutButtons;
+    CatalogDialog catalogDialog = new CatalogDialog();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finish();
     }
 
-    public void addButton(){
+    public void addButton(String name){
         final View buttonView = getLayoutInflater().inflate(R.layout.row_catalog, null, false);
         Button button = (Button) buttonView.findViewById(R.id.button_catalog);
+        button.setText(name);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,12 +139,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void openDialog(){
-        CatalogDialog deleteDialog = new CatalogDialog();
-        deleteDialog.show(getSupportFragmentManager(), "catalogDialog");
+        catalogDialog.show(getSupportFragmentManager(), "catalogDialog");
     }
 
     @Override
     public void onYesClicked() {
-        addButton();
+        String name = catalogDialog.getName();
+        if (name.equals("")){
+            Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            addButton(name);
+        }
+
     }
 }

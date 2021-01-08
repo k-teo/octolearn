@@ -6,36 +6,65 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class CatalogDialog extends AppCompatDialogFragment {
     private DialogListener listener;
+    private String m_Text = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Add catalog");
-        builder.setCancelable(false);
         final EditText input = new EditText(getContext());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
+        builder.setTitle("Add catalog")
+                .setCancelable(false)
+                .setView(input)
+                .setPositiveButton("Yes", new Dialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int whichButton) {
+                        m_Text = input.getText().toString();
+                        listener.onYesClicked();
+                    }
+                })
+                .setNegativeButton("Cancel", new Dialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int whichButton) {
+                    }
+                });
+        final AlertDialog dialog = builder.create();
 
-        builder.setPositiveButton("Yes", new Dialog.OnClickListener() {
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
             @Override
-            public void onClick(DialogInterface dialogInterface, int whichButton) {
-                listener.onYesClicked();
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        m_Text = input.getText().toString();
+                        listener.onYesClicked();
+                        if(!m_Text.equals("")) { dialog.dismiss(); }
+                    }
+                });
             }
         });
-        builder.setNegativeButton("Cancel", new Dialog.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int whichButton) {
-            }
-        });
-        return builder.create();
+
+        return dialog;
+
+    }
+
+    public String getName(){
+        return m_Text;
     }
     public interface DialogListener {
         void onYesClicked();
