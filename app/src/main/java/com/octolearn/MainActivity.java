@@ -77,22 +77,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_import:
-                startActivity(new Intent(getApplicationContext(), CreateFlashcardActivity.class));
+                Toast.makeText(MainActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_export:
-                startActivity(new Intent(getApplicationContext(), CreateCatalogActivity.class));
+                Toast.makeText(MainActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_statistics:
                 startActivity(new Intent(getApplicationContext(), Statistics.class));
-                break;
-            case R.id.nav_friends:
-                Toast.makeText(MainActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_settings:
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 break;
             case R.id.nav_profile:
-                startActivity(new Intent(getApplicationContext(), Profile.class));
+                Toast.makeText(MainActivity.this, "Not available", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 logout();
