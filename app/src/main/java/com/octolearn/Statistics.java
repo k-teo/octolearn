@@ -22,8 +22,8 @@ public class Statistics extends AppCompatActivity {
         PieChart pieChart = findViewById(R.id.pieChart);
 
         ArrayList<PieEntry> values = new ArrayList<>();
-        values.add(new PieEntry(508, "to learn"));
-        values.add(new PieEntry(400, "accomplished"));
+        values.add(new PieEntry(3, "to learn"));
+        values.add(new PieEntry(1, "accomplished"));
 
         PieDataSet pieDataSet = new PieDataSet(values, "Flashcards");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
