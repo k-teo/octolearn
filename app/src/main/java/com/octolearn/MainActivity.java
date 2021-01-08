@@ -1,7 +1,6 @@
 package com.octolearn;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.octolearn.ui.data.CatalogDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,16 +22,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, CatalogDialog.DialogListener {
 
     private DrawerLayout drawer;
     private Button newButton;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    LinearLayout layoutButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        layoutButtons = (LinearLayout) findViewById(R.id.buttons_layout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toggle.syncState();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
-        Button catalog = findViewById(R.id.button1);
-        catalog.setOnClickListener(this);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -103,11 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.button1:
-                startActivity(new Intent(MainActivity.this, WayOfLearningActivity.class));
-                break;
             case R.id.fab:
-                addButton();
+                openDialog();
                 break;
         }
     }
@@ -127,9 +125,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void addButton(){
-        LinearLayout layout = (LinearLayout) findViewById(R.id.buttons_layout);
-        newButton = new Button(this);
-        newButton.setText("new button");
-        layout.addView(newButton);
+        final View buttonView = getLayoutInflater().inflate(R.layout.row_catalog, null, false);
+        Button button = (Button) buttonView.findViewById(R.id.button_catalog);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WayOfLearningActivity.class));
+            }
+        });
+        layoutButtons.addView(buttonView);
+    }
+
+    public void openDialog(){
+        CatalogDialog deleteDialog = new CatalogDialog();
+        deleteDialog.show(getSupportFragmentManager(), "catalogDialog");
+    }
+
+    @Override
+    public void onYesClicked() {
+        addButton();
     }
 }
