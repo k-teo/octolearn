@@ -10,56 +10,57 @@
         android:id="@+id/incorrect"
         android:layout_width="160dp"
         android:layout_height="44dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="20dp"
         android:background="@color/colorPrimaryBright"
         android:text="incorrect"
         android:textColor="#BF0000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/correct"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
 
     <Button
         android:id="@+id/correct"
         android:layout_width="160dp"
         android:layout_height="44dp"
-        android:layout_marginTop="20dp"
         android:background="@color/colorPrimaryBright"
         android:text="correct"
-        android:textColor="#43BD01"
+        android:textColor="#3ba600"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/incorrect"
-        app:layout_constraintTop_toBottomOf="@+id/back"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="340dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="104dp"
         android:background="@color/colorPrimaryBright"
         android:text="Reverse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.736" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="318dp"
         android:layout_height="227dp"
-        android:layout_marginTop="124dp"
         android:background="@drawable/box"
         android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/word"
@@ -112,18 +113,5 @@
         app:layout_constraintStart_toEndOf="@+id/yellow_num"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/sentence"
-        android:layout_width="275dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/word" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

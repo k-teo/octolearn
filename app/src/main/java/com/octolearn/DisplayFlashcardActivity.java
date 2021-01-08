@@ -40,7 +40,7 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
         }
 
         word = (TextView) findViewById(R.id.word);
-        sample = (TextView) findViewById(R.id.sentence);
+
 
         redNum = (TextView) findViewById(R.id.red_num);
         yellowNum = (TextView) findViewById(R.id.yellow_num);
@@ -101,7 +101,7 @@ public class DisplayFlashcardActivity extends AppCompatActivity implements View.
         flashcards.remove(0);
 
         word.setText(currentFlashcard.getWord());
-        sample.setText(currentFlashcard.getTranslation());
+
 
         redNum.setText(String.valueOf(redCounter));
         yellowNum.setText(String.valueOf(yellowCounter));
