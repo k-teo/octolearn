@@ -1,4 +1,4 @@
-package com.octolearn.ui.data;
+package com.octolearn;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

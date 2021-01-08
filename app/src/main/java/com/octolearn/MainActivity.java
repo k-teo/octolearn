@@ -1,19 +1,20 @@
 package com.octolearn;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.octolearn.ui.data.CatalogDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,13 +23,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, CatalogDialog.DialogListener {
 
     private DrawerLayout drawer;
-    private Button newButton;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     LinearLayout layoutButtons;
     CatalogDialog catalogDialog = new CatalogDialog();
+    private CatalogsSQLiteDB dataBase;
+    private ArrayList<String> catalogs;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         layoutButtons = (LinearLayout) findViewById(R.id.buttons_layout);
+
+        dataBase = new CatalogsSQLiteDB(this);
+        catalogs = new ArrayList<>();
+
+        loadCatalogsFromDatabase();
+
+        for(String catalog : catalogs){
+            addButton(catalog);
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,7 +61,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -104,11 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.fab:
-                openDialog();
-                break;
-        }
     }
 
     @Override
@@ -149,8 +163,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
         }
         else{
+            dataBase.addCatalog(Integer.toString(counter), name);
+            counter++;
             addButton(name);
         }
 
+    }
+
+    private void loadCatalogsFromDatabase() {
+        Cursor cursor = dataBase.getAllCatalogs();
+
+        if (cursor.moveToFirst()) {
+            do {
+                catalogs.add(
+                        cursor.getString(1)
+                );
+            } while (cursor.moveToNext());
+
+        }
     }
 }
