@@ -139,14 +139,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finish();
     }
 
-    public void addButton(String name){
+    public void addButton(final String name){
         final View buttonView = getLayoutInflater().inflate(R.layout.row_catalog, null, false);
         Button button = (Button) buttonView.findViewById(R.id.button_catalog);
         button.setText(name);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WayOfLearningActivity.class));
+                Intent intent = new Intent(MainActivity.this, WayOfLearningActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         layoutButtons.addView(buttonView);

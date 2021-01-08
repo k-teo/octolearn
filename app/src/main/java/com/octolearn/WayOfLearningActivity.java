@@ -7,15 +7,17 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class WayOfLearningActivity extends AppCompatActivity implements View.OnClickListener{
+public class WayOfLearningActivity extends AppCompatActivity implements View.OnClickListener, DeleteDialog.DialogListener{
 
     private ArrayList<Flashcard> flashcards;
-    private WordsSQLiteDB dataBase;
+    private WordsSQLiteDB wordsTable;
+    private CatalogsSQLiteDB catalogsTable;
+    private String catalogName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,16 @@ public class WayOfLearningActivity extends AppCompatActivity implements View.OnC
         miniGames.setOnClickListener(this);
         Button listOfWords = findViewById(R.id.wordsListView);
         listOfWords.setOnClickListener(this);
+        ImageView delete = findViewById(R.id.deleteCatalog);
+        delete.setOnClickListener(this);
 
-        dataBase = new WordsSQLiteDB(this);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            catalogName = bundle.getString("name");
+        }
+
+        wordsTable = new WordsSQLiteDB(this);
+        catalogsTable = new CatalogsSQLiteDB(this);
         flashcards = new ArrayList<>();
 
 
@@ -65,16 +75,20 @@ public class WayOfLearningActivity extends AppCompatActivity implements View.OnC
                 startActivity(intent);
                 break;
             case R.id.miniGames:
-                Toast.makeText(WayOfLearningActivity.this, "Not available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WayOfLearningActivity.this, catalogName, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wordsListView:
                 startActivity(new Intent(WayOfLearningActivity.this, ListOfWordsActivity.class));
                 break;
+            case R.id.deleteCatalog:
+                openDialog();
+                break;
+
         }
     }
 
     public void getFlashcards(){
-        Cursor cursor = dataBase.getAllFlashcards();
+        Cursor cursor = wordsTable.getAllFlashcards();
 
         if (cursor.moveToFirst()) {
             do {
@@ -87,6 +101,19 @@ public class WayOfLearningActivity extends AppCompatActivity implements View.OnC
                 ));
             } while (cursor.moveToNext());
         }
+    }
+
+    public void openDialog(){
+        DeleteDialog deleteDialog = new DeleteDialog();
+        deleteDialog.show(getSupportFragmentManager(), "deleteDialog");
+    }
+
+    @Override
+    public void onYesClicked() {
+            wordsTable.deleteAllFlashcards(catalogName);
+            catalogsTable.deleteCatalog(catalogName);
+            startActivity(new Intent(WayOfLearningActivity.this, MainActivity.class));
+            finish();
     }
 
 }

@@ -79,6 +79,12 @@ public class WordsSQLiteDB extends SQLiteOpenHelper {
                 FLASHCARDS_COLUMN_WORD + "=?" ,
                 new String[] { word }) == 1;
     }
+    boolean deleteAllFlashcards(String catalogName) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        return sqLiteDatabase.delete(FLASHCARDS_TABLE_NAME,
+                FLASHCARDS_COLUMN_WORD + "=?" ,
+                new String[] { catalogName }) == 1;
+    }
     void deleteAllFlashcards() {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FLASHCARDS_TABLE_NAME);

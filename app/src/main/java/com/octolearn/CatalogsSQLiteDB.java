@@ -58,11 +58,11 @@ public class CatalogsSQLiteDB extends SQLiteOpenHelper {
 
     }
 
-    boolean deleteCatalog(String id) {
+    boolean deleteCatalog(String name) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.delete(CATALOGS_TABLE_NAME,
-                CATALOGS_COLUMN_ID + "=?" ,
-                new String[] { id }) == 1;
+                CATALOGS_COLUMN_NAME + "=?" ,
+                new String[] { name }) == 1;
     }
     void deleteAllCatalogs() {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
