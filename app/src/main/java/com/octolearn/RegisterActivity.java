@@ -45,23 +45,25 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String confirmPassword = mConfirmPassword.getText().toString().trim();
-                if(TextUtils.isEmpty(email)){
-                    mEmail.setError("Email is required");
-                    return;
-                }
+                if(!validateRegistrationInput(nickname, email, password, confirmPassword)) {
 
-                if(TextUtils.isEmpty(password)){
-                    mPassword.setError("Password is required");
-                }
+                    if (TextUtils.isEmpty(email)) {
+                        mEmail.setError("Email is required");
+                        return;
+                    }
 
-                if(password.length() < 6){
-                    mPassword.setError("Password is to short (min 6 characters");
-                }
+                    if (TextUtils.isEmpty(password)) {
+                        mPassword.setError("Password is required");
+                    }
 
-                if(TextUtils.isEmpty(confirmPassword)){
-                    mPassword.setError("Confirm your password");
-                }
+                    if (password.length() < 6) {
+                        mPassword.setError("Password is to short (min 6 characters");
+                    }
 
+                    if (TextUtils.isEmpty(confirmPassword)) {
+                        mPassword.setError("Confirm your password");
+                    }
+                }
                 if(fAuth.getCurrentUser() != null){
                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 }
@@ -92,5 +94,23 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+    }
+    public static Boolean validateRegistrationInput(String nickname, String email, String password, String confirmPassword){
+        if(nickname.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            return false;
+        }
+        if(password != confirmPassword) {
+            return false;
+        }
+        if(!password.matches(".*\\d.*")){
+            return false;
+        }
+        if(!email.contains("@")){
+            return false;
+        }
+        if(password.length()<3){
+            return false;
+        }
+        return true;
     }
 }
