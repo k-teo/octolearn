@@ -78,7 +78,7 @@ public class EditFlashcardActivity extends AppCompatActivity {
 
                 if (dataBase.updateFlashcard(word, translation, newWord, newTranslation, newSample, newTranscription, "animals"))
                 {
-                    Toast.makeText(EditFlashcardActivity.this, word + translation, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditFlashcardActivity.this, "Flashcard edited", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditFlashcardActivity.this, ListOfWordsActivity.class));
                 }
             }

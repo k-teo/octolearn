@@ -4,7 +4,7 @@
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="example_switch"
-        android:summary="@string/Option1_summary"
-        android:title="@string/option1_title" />
+        android:summary="Choose between themes for application"
+        android:title="Dark mode" />
 
 </PreferenceScreen>

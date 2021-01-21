@@ -180,7 +180,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         cursor.getString(1)
                 );
             } while (cursor.moveToNext());
-
         }
+        if (cursor.moveToLast()){
+            counter = Integer.parseInt(cursor.getString(0));
+        }
+
     }
 }
