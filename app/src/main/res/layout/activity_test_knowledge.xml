@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestKnowledgeActivity">
+    tools:context=".TestKnowledgeActivity"
+    android:id="@+id/testKnowledgeA">
 
     <TextView
         android:id="@+id/word_test"

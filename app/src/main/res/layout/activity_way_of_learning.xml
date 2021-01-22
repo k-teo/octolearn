@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WayOfLearningActivity">
+    tools:context=".WayOfLearningActivity"
+    android:id="@+id/insideCatalog">
 
     <Button
         android:id="@+id/flashcards"
