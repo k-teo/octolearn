@@ -47,20 +47,34 @@ public class CreateFlashcardActivity extends AppCompatActivity {
                 translation = (translationEditText.getText().toString().equals(""))? null : translationEditText.getText().toString();
                 sample = (sampleEditText.getText().toString().equals(""))? null : sampleEditText.getText().toString();
                 transcription = (transcriptionEditText.getText().toString().equals(""))? null : transcriptionEditText.getText().toString();
-
-                if (dataBase.addFlashcard(word, translation, sample, transcription, catalogName))
-                {
-                    Toast.makeText(CreateFlashcardActivity.this, "Flashcard Added", Toast.LENGTH_SHORT).show();
+                if(addFlashcard(word, translation, sample, transcription)){
+                    dataBase.addFlashcard(word, translation, sample, transcription, catalogName);
                     startActivity(new Intent(CreateFlashcardActivity.this, ListOfWordsActivity.class));
                 }
-                else
-                    if (word == null && translation == null)
-                        Toast.makeText(CreateFlashcardActivity.this, "Word and its translation cannot be empty", Toast.LENGTH_SHORT).show();
-                    else if (word == null)
-                        Toast.makeText(CreateFlashcardActivity.this, "Word cannot be empty", Toast.LENGTH_SHORT).show();
-                    else if (translation == null)
-                        Toast.makeText(CreateFlashcardActivity.this, "Translation cannot be empty", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(CreateFlashcardActivity.this, "Word and its translation cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+    public static boolean addFlashcard(String word, String translation, String  sample, String  transcription){
+        word = word.equals("") ? null : word;
+        translation = translation.equals("") ? null : translation;
+
+        if (word == null && translation == null){
+            return false;
+        }
+        else if (word == null){
+            return false;
+        }
+
+        else if (translation == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+
     }
 }
